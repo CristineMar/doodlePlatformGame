@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    background-color: white;
+}
+
+.grid {
+    width: 400px;
+    height: 600px;
+    background-color: #444b57;
+    background-image: url('images/background.png');
+    position: relative;
+    margin: auto;
+    border: 1px solid black;
+    font-size: 200px;
+    text-align: center;
+}
+
+.doodler {
+    width: 60px;
+    height: 85px;
+    background-color: transparent;
+    position: absolute;
+}
+
+.platform {
+    width: 85px;
+    height: 15px;
+    background: #6eaf24;
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(15,9,121,1) 42%, rgba(0,108,255,1) 100%);
+    background-image: url('images/platform.png');
+    position: absolute;
+    border-radius: 40px;
+}
+
+.goodThing {
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+}

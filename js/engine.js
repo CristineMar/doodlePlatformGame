@@ -126,7 +126,7 @@ function fall() {
       gameOver();
     }
     collisionPlatform();
-  }, VELOCITYFALL);
+  }, velocityFall);
 }
 
 /////////////////////////////
@@ -139,7 +139,6 @@ function jump() {
   clearInterval(downTimerId);
   isJumping = true;
   //to stop jump
-  
   upTimerId = setInterval(() => {
     if (doodlerBottomSpace + 85 <= GRIDHEIGHT - 100) {
       doodlerBottomSpace += 20; //height jump
@@ -153,7 +152,7 @@ function jump() {
     if (doodlerBottomSpace > startPoint + 200) {
       fall();
     }
-  }, VELOCITYJUMP);
+  }, velocityJump);
 }
 
 /////////////////////////////
@@ -194,6 +193,12 @@ function stopCount() {
   timer_is_on = 0;
 }
 
+function changeVelocity(velocityObject, velocity) {
+  if (score % 10 === 0 && score > 0) {
+    velocityObject -= velocity;
+  }
 
+  return velocityObject;
+}
 
 

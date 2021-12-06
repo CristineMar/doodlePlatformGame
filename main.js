@@ -22,11 +22,11 @@ const GRID = document.querySelector(".grid");
 const DOODLER = document.createElement("img");
 const GRIDWIDTH = GRID.clientWidth;
 const GRIDHEIGHT = GRID.clientHeight;
-const VELOCITYPLATFORM = 25;
-const VELOCITYJUMP = 25;
-const VELOCITYFALL = 13;
-const VELOCITYLEFT = 30;
-const VELOCITYRIGHT = 30;
+let velocityPlatform = 25;
+let velocityJump = 25;
+let velocityFall = 13;
+let velocityLeft = 30;
+let velocityRight = 30;
 
 let startPoint = 400;
 let doodlerLeftSpace = 50;
@@ -38,7 +38,7 @@ let isGameOver = false;
 let isJumping = true;
 let platformTimerId;
 
-let score = 0;
+let score;
 
 /////////////////////////////
 //        GAME OVER        //
@@ -91,8 +91,8 @@ function start() {
     doodlerBottomSpace = startPoint;
     createPlatfoms();
     createDoodler();
-    //createGoodThing();
-    platformTimerId = setInterval(movePlatforms, VELOCITYPLATFORM); //every 1 sec
+
+    platformTimerId = setInterval(movePlatforms, velocityPlatform); //every 1 sec
     jump();
     countScore(score);
     startCount();

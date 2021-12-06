@@ -29,7 +29,7 @@ function moveLeft() {
     } else {
       moveRight();
     }
-  }, VELOCITYLEFT);
+  }, velocityLeft);
 }
 
 /////////////////////////////
@@ -52,7 +52,7 @@ function moveRight() {
     } else {
       moveLeft();
     }
-  }, VELOCITYRIGHT);
+  }, velocityRight);
 }
 
 /////////////////////////////

@@ -9,7 +9,13 @@ let goodThings = [];
 let badThings = [];
 let specialThings = ["Front-end", "Back-end", "Developer", "Analista"];
 
-let playerInfo = ["1", "Cristine", "1"];
+let playerInfo = [
+  {"rank": "1", "name": "Cristine", "points": "300" },
+  {"rank": "2", "name": "Alex", "points": "250"},
+  {"rank": "3", "name": "Jeniffer", "points": "200"},
+  {"rank": "4", "name": "Sophie", "points": "150"},
+  {"rank": "5", "name": "Pepito", "points": "100"}
+];
 
 let finalInfo = [
   "Grau superior DAW",
@@ -140,8 +146,10 @@ function countScore(score) {
 
 //final score
 function displayFinalScreen() {
-  debugger
   let contText = document.createElement("div");
+  let i = 0;
+  let rankingPos = playerInfo.length + 1;
+  let valuePoints;
   contText.style.margin = "0 1rem 0 1rem";
   contText.style.borderStyle = "dashed solid";
   if (score === 0) {
@@ -152,7 +160,17 @@ function displayFinalScreen() {
     result = score + (120 - (minute * 60 + seconds));
   }
   scoreFinal = result;
-  GRID.innerHTML = "game over <br>" + scoreFinal; //add ranking here
+  debugger;
+  do {
+    valuePoints = playerInfo[i].points;
+    if (score > parseInt(valuePoints)) {
+      rankingPos = i;
+    } else {
+      i++;
+    }
+  } while (i <= playerInfo.length -1);
+
+  GRID.innerHTML = "game over <br>" + scoreFinal + "<br> rank:" + rankingPos;
   GRID.style.color = "white";
   GRID.style.fontSize = "50px";
 
@@ -280,6 +298,7 @@ function displayRank() {
   let table = document.createElement("table");
   let home = document.createElement("button");
 
+
   home.innerHTML = "tornar";
   home.className = "home";
   home.style.animation = "appear 0.4s";
@@ -287,13 +306,17 @@ function displayRank() {
   GRID.innerHTML = "Ranking";
   GRID.style.color = "white";
   table.style.margin = "auto";
+  table.style.marginTop = "2rem";
 
-  let rowTable = table.insertRow(0);
-  for (let y = 0; y < 3; y++) {
-    let column = rowTable.insertCell(y);
-    column.innerHTML = playerInfo[y];
-    column.style.color = "white";
-    column.style.fontSize = "70px";
+  for (let y = 0; y < playerInfo.length; y++) {
+    let rowTable = table.insertRow(y);
+    let objectLength = Object.getOwnPropertyNames(playerInfo[y]).length;
+    for (let h = 0; h < objectLength; h++) {
+      let column = rowTable.insertCell(h);
+      column.innerHTML = Object.values(playerInfo[y])[h];
+      column.style.color = "white";
+      column.style.fontSize = "70px";
+    }
   }
   GRID.appendChild(home);
   GRID.appendChild(table);

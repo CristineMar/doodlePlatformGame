@@ -1,41 +1,316 @@
 * {
-    margin: 0;
-    background-color: white;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  font-family: "Waiting for the Sunrise", cursive;
+  font-size: 30px;
+  margin: 10px 50px;
+  letter-spacing: 6px;
+  font-weight: bold;
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -500px;
+  margin-left: -350px;
+}
+
+.container {
+  position: relative;
+  height: 50px;
+  width: 700px;
+  margin: 0 auto;
+  padding: 1rem 0 1rem 0;
+  justify-content: space-between;
+  display: flex;
+}
+
+td {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  
+}
+
+table {
+  width: 100%;
+  border-style: dashed solid;
+}
+
+.time {
+  color: white;
+}
+.score {
+  color: white;
 }
 
 .grid {
-    width: 400px;
-    height: 600px;
-    background-color: #444b57;
-    background-image: url('images/background.png');
-    position: relative;
-    margin: auto;
-    border: 1px solid black;
-    font-size: 200px;
-    text-align: center;
+  background-color: #444b57;
+  background-image: url("images/background.png");
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  width: 700px;
+  height: 900px;
+  font-size: 100px;
+  text-align: center;
 }
 
 .doodler {
-    width: 60px;
-    height: 85px;
-    background-color: transparent;
-    position: absolute;
+  width: 60px;
+  height: 85px;
+  background-color: transparent;
+  position: absolute;
 }
 
 .platform {
-    width: 85px;
-    height: 15px;
-    background: #6eaf24;
-    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(15,9,121,1) 42%, rgba(0,108,255,1) 100%);
-    background-image: url('images/platform.png');
-    position: absolute;
-    border-radius: 40px;
+  width: 85px;
+  height: 20px;
+  background: #6eaf24;
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(15, 9, 121, 1) 42%,
+    rgba(0, 108, 255, 1) 100%
+  );
+  background-image: url("images/platform.png");
+  position: absolute;
+  border-radius: 40px;
 }
 
 .goodThing {
-    width: 25px;
-    height: 25px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
+  height: 30px;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  padding: 5px;
+  display: inline-block;
+  border-radius: 20%;
+}
+
+.badThing {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.anim-typewriter {
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  width: 7em;
+  margin-top: 10rem;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  animation: typewriter 1s steps(11) 0.5s 1 normal both,
+    blinkTextCursor 500ms steps(11) infinite normal;
+}
+
+.swal2-styled {
+  color: black !important;
+}
+.swal2-styled.swal2-deny {
+  background-color: #f6e7d1 !important;
+}
+.swal2-styled.swal2-confirm {
+  background-color: #f6e7d1 !important;
+}
+
+.boxBtn {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-around;
+  gap: 30px;
+  height: 90%;
+}
+
+/* CSS */
+.buttons {
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #f6e7d1;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  color: #422800;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  text-align: center;
+  -webkit-box-shadow: 9px 6px 20px -4px rgba(0, 0, 0, 0.68);
+  box-shadow: 9px 6px 20px -4px rgba(0, 0, 0, 0.68);
+  opacity: 0;
+  animation-name: bounceIn;
+  animation-duration: 450ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+button:nth-child(1) {
+  animation-delay: 2s;
+}
+button:nth-child(2) {
+  animation-delay: 2.15s;
+}
+button:nth-child(3) {
+  animation-delay: 2.3s;
+}
+
+.buttons:hover {
+  background-color: #fff;
+}
+
+.buttons:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .buttons {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.home {
+  position: inherit;
+    left: 10px;
+    top: 10px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #f6e7d1;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  color: #422800;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  text-align: center;
+  -webkit-box-shadow: 9px 6px 20px -4px rgba(0, 0, 0, 0.68);
+  box-shadow: 9px 6px 20px -4px rgba(0, 0, 0, 0.68);
+}
+
+@-webkit-keyframes appear {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(0.25);
+    transform: scale(0.25);
+  }
+  75% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes appear {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(0.25);
+    transform: scale(0.25);
+  }
+  75% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes disappear {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  75% {
+    -webkit-transform: scale(0.25);
+    transform: scale(0.25);
+  }
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+@keyframes disappear {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  75% {
+    -webkit-transform: scale(0.25);
+    transform: scale(0.25);
+  }
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+  }
+  to {
+    width: 7em;
+    border-right: 0px solid rgba(255, 255, 255, 0.75);
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
 }

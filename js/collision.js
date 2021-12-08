@@ -42,8 +42,8 @@ function collisionGoodThing(platform) {
   goodThings.forEach((goodThing) => {
     if (
       goodThing.bottom == platform.bottom + 15 &&
-      doodlerLeftSpace + 60 >= goodThing.left &&
-      doodlerLeftSpace <= goodThing.left + 60
+      doodlerLeftSpace + 85 >= goodThing.left &&
+      doodlerLeftSpace <= goodThing.left + 85
     ) {
       goodThing.visual.style.animation = "disappear 0.4s";
       setInterval(() => {

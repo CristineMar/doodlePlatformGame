@@ -7,15 +7,6 @@ let newPlatform;
 
 let goodThings = [];
 let badThings = [];
-let specialThings = ["Front-end", "Back-end", "Developer", "Analista"];
-
-let playerInfo = [
-  {"rank": "1", "name": "Cristine", "points": "300" },
-  {"rank": "2", "name": "Alex", "points": "250"},
-  {"rank": "3", "name": "Jeniffer", "points": "200"},
-  {"rank": "4", "name": "Sophie", "points": "150"},
-  {"rank": "5", "name": "Pepito", "points": "100"}
-];
 
 let finalInfo = [
   "Grau superior DAW",
@@ -23,7 +14,7 @@ let finalInfo = [
   "Sortides professionals:",
   "Front-end developer : Dissenyar interfícies d’usuari, Generar contingut multimèdia, Programar la interacció amb l’usuari",
   "Back-end developer : Crear base de dades, Programar les funcionalitats de la capa de negoci, Programar APIs / web services",
-  "Analista : Investigar i detectar necessitats, Dissenyar bases de dades, Dissenyar interfícies de les aplicacions, Crear diagrames UML"
+  "Analista : Investigar i detectar necessitats, Dissenyar bases de dades, Dissenyar interfícies de les aplicacions, Crear diagrames UML",
 ];
 
 let scoreFinal = 0;
@@ -97,10 +88,10 @@ class Thing {
       case 1:
         visual.classList.add("goodThing");
         visual.id = "goodThing";
-        let numpos = createThing(0, specialThings.length - 1);
+        let numpos = createThing(0, job_oportunities.length - 1);
         visual.style.color = "white";
         visual.style.fontSize = "20px";
-        visual.innerHTML = specialThings[numpos];
+        visual.innerHTML = job_oportunities[numpos].job;
         break;
       case 2:
         visual.classList.add("badThing");
@@ -148,7 +139,7 @@ function countScore(score) {
 function displayFinalScreen() {
   let contText = document.createElement("div");
   let i = 0;
-  let rankingPos = playerInfo.length + 1;
+ /*  let rankingPos = playerInfo.length + 1; */
   let valuePoints;
   contText.style.margin = "0 1rem 0 1rem";
   contText.style.borderStyle = "dashed solid";
@@ -160,29 +151,30 @@ function displayFinalScreen() {
     result = score + (120 - (minute * 60 + seconds));
   }
   scoreFinal = result;
-  debugger;
-  do {
+
+/*   do {
     valuePoints = playerInfo[i].points;
     if (score > parseInt(valuePoints)) {
       rankingPos = i;
     } else {
       i++;
     }
-  } while (i <= playerInfo.length -1);
+  } while (i <= playerInfo.length - 1); */
 
-  GRID.innerHTML = "game over <br>" + scoreFinal + "<br> rank:" + rankingPos;
+  GRID.innerHTML = "game over <br>" + scoreFinal;
   GRID.style.color = "white";
   GRID.style.fontSize = "50px";
 
   for (let i = 0; i < finalInfo.length; i++) {
-     let text = document.createElement("p");
-     let element = finalInfo[i];
-     text.style.color = "white";
-     text.style.fontSize = "20px";
+    let text = document.createElement("p");
+    let element = finalInfo[i];
+    text.style.color = "white";
+    text.style.fontSize = "20px";
     text.innerHTML = element;
+    text.style.fontFamily = "fantasy";
     text.style.textAlign = "start";
     text.style.margin = "10px";
-        contText.appendChild(text);
+    contText.appendChild(text);
   }
   GRID.appendChild(contText);
 }
@@ -260,34 +252,33 @@ function homePage() {
   box.appendChild(scoreBoard);
 }
 
-
 /////////////////////////////
 //          Modal          //
 ////////////////////////////
 
 function displayInstruccions() {
-     Swal.fire({
-       title: "Instrucció",
-       html:
-         "<div class= 'left'> <img src='images/left.png' alt='left arrow' height='42' width='42'> <span style='padding-top: 10px'> per moure a l'esquerra </span> </div> " +
-         "<div class= 'left'> <img src='images/right.png' alt='left arrow' height='42' width='42'> <span style='padding-top: 10px'> per moure a la dreta </span> </div> " +
-         "<div class= 'left'> <span style='padding-top: 10px'> * text: +2pts </span> </div> " +
-         "<div class= 'left'> <span style='padding-top: 10px'> * -2: -2pts </span> </div> ",
-       icon: "question",
-       showCancelButton: true,
+  Swal.fire({
+    title: "Instrucció",
+    html:
+      "<div class= 'left'> <img src='images/left.png' alt='left arrow' height='42' width='42'> <span style='padding-top: 10px'> per moure a l'esquerra </span> </div> " +
+      "<div class= 'left'> <img src='images/right.png' alt='left arrow' height='42' width='42'> <span style='padding-top: 10px'> per moure a la dreta </span> </div> " +
+      "<div class= 'left'> <span style='padding-top: 10px'> * text: +2pts </span> </div> " +
+      "<div class= 'left'> <span style='padding-top: 10px'> * -2: -2pts </span> </div> ",
+    icon: "question",
+    showCancelButton: true,
 
-       confirmButtonColor: "#f6e7d1",
-       cancelButtonColor: "#d308087d",
+    confirmButtonColor: "#f6e7d1",
+    cancelButtonColor: "#d308087d",
 
-       confirmButtonText: "Començar a jugar!",
-       cancelButtonText: "Tornar",
-     }).then((result) => {
-       if (result.isConfirmed) {
-         start();
-       } else {
-         homePage();
-       }
-     });
+    confirmButtonText: "Començar a jugar!",
+    cancelButtonText: "Tornar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      start();
+    } else {
+      homePage();
+    }
+  });
 }
 
 function displayRank() {
@@ -298,7 +289,6 @@ function displayRank() {
   let table = document.createElement("table");
   let home = document.createElement("button");
 
-
   home.innerHTML = "tornar";
   home.className = "home";
   home.style.animation = "appear 0.4s";
@@ -308,16 +298,8 @@ function displayRank() {
   table.style.margin = "auto";
   table.style.marginTop = "2rem";
 
-  for (let y = 0; y < playerInfo.length; y++) {
-    let rowTable = table.insertRow(y);
-    let objectLength = Object.getOwnPropertyNames(playerInfo[y]).length;
-    for (let h = 0; h < objectLength; h++) {
-      let column = rowTable.insertCell(h);
-      column.innerHTML = Object.values(playerInfo[y])[h];
-      column.style.color = "white";
-      column.style.fontSize = "70px";
-    }
-  }
+  get_ranking(table);
+
   GRID.appendChild(home);
   GRID.appendChild(table);
 }

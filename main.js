@@ -2,6 +2,7 @@
 //      WINDOW LOADED      //
 ////////////////////////////
 document.addEventListener("DOMContentLoaded", () => {
+  get_jobs();
   Swal.fire({
     title: "En que consisteix:",
     icon: "info",
@@ -31,8 +32,8 @@ let velocityRight = 30;
 let startPoint = 400;
 let doodlerLeftSpace = 50;
 let platformWidth = 85;
-let doodlerBottomSpace;
 let platformCount = 5;
+let doodlerBottomSpace = startPoint;
 
 let isGameOver = false;
 let isJumping = true;
@@ -72,6 +73,7 @@ function gameOver() {
   displayFinalScreen(); //show final screen with info
   //stop timer
   stopCount();
+  send_score(scoreFinal);
   GRID.appendChild(home);
 }
 
@@ -80,23 +82,26 @@ function gameOver() {
 ////////////////////////////
 
 //start game
-function start() {
-  while (GRID.firstChild) {
-    GRID.removeChild(GRID.firstChild);
-  }
-  if (!isGameOver) {
-    minute = 2;
-    seconds = 0;
-    score = 0;
-    doodlerBottomSpace = startPoint;
-    createPlatfoms();
-    createDoodler();
 
-    platformTimerId = setInterval(movePlatforms, velocityPlatform); //every 1 sec
-    jump();
-    countScore(score);
-    startCount();
-    document.addEventListener("keydown", control);
-    document.addEventListener("keyup", stopControl);
+  function start() {
+    while (GRID.firstChild) {
+      GRID.removeChild(GRID.firstChild);
+    }
+    if (!isGameOver) {
+      minute = 2;
+      seconds = 0;
+      score = 0;
+      doodlerBottomSpace = 400;
+      console.log(doodlerBottomSpace)
+      createPlatfoms();
+      createDoodler();
+
+      platformTimerId = setInterval(movePlatforms, velocityPlatform); //every 1 sec
+      jump();
+      countScore(score);
+      startCount();
+      document.addEventListener("keydown", control);
+      document.addEventListener("keyup", stopControl);
+    }
   }
-}
+

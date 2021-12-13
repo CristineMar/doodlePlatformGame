@@ -117,7 +117,8 @@ function fall() {
   //to stop doodler from jumping
   isJumping = false;
   //doodler fall
-  downTimerId = setInterval(() => {
+  downTimerId = setInterval(fallDoodler, velocityFall);
+/*   downTimerId = setInterval(() => {
     doodlerBottomSpace -= 5;
     DOODLER.style.bottom = doodlerBottomSpace + "px";
 
@@ -126,7 +127,18 @@ function fall() {
       gameOver();
     }
     collisionPlatform();
-  }, velocityFall);
+  }, velocityFall); */
+}
+
+function fallDoodler() {
+  doodlerBottomSpace -= 5;
+  DOODLER.style.bottom = doodlerBottomSpace + "px";
+
+  //game over
+  if (doodlerBottomSpace <= 0) {
+    gameOver();
+  }
+  collisionPlatform();
 }
 
 /////////////////////////////
@@ -169,6 +181,7 @@ function addScore() {
   ) {
     score++;
     countScore(score);
+    changeVelocity(score);
   }
 }
 
@@ -199,6 +212,22 @@ function changeVelocity(velocityObject, velocity) {
   }
 
   return velocityObject;
+}
+
+/////////////////////////////
+//     CHANGE VELOCITY     //
+////////////////////////////
+
+function changeVelocity(score) {
+  if (score % 10 === 0 && score != 0) {
+    clearInterval(upTimerId);
+    clearInterval(downTimerId);
+    clearInterval(leftTimerId);
+    clearInterval(rightTimerId);
+    clearInterval(platformTimerId);
+    velocityPlatform -= 5;
+    platformTimerId = setInterval(movePlatforms, velocityPlatform); //every 1 sec
+  }
 }
 
 

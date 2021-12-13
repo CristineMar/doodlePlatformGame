@@ -53,6 +53,41 @@ function get_jobs_oportunities() {
     }
 }
 
+function get_all_cycles()
+{
+    $cycles = [];
+
+    $id_cycle = isset($_POST["id_cycle"]) ? $_POST["id_cycle"] : -1;
+
+    try {
+        if ($id_cycle !== -1) {
+            $db = new Database();
+
+            $statement = $db->connect()->prepare("SELECT c.name as cicle, c.description
+                                                  FROM cycle c
+                                                  WHERE  c.id = :id_cycle");
+
+                                                  /* "SELECT c.name as cicle, c.description as cicle_description, jo.name as job, jo.description 
+                                                  FROM cycle_jobs cj
+                                                  INNER JOIN cycle c ON c.id = cj.id_cycle
+                                                  INNER JOIN job_oportunities jo ON jo.id =  cj.id_job
+                                                  WHERE  cj.id_cycle = :id_cycle" */
+
+            $statement->bindParam(":id_cycle", $id_cycle);
+
+            $statement->execute();
+
+            $cycles = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            Response::send(array("msg" => "Ok.", "data" => $cycles), Response::HTTP_OK);
+        } else {
+            Response::send(array("msg" => "Miss params."), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    } catch (PDOException $e) {
+        Response::send(array("msg" => "An unexpected error has occurred: " . $e->getMessage()), Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+}
+
 function get()
 {
     $ranking = [];

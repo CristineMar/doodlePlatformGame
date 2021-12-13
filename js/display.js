@@ -8,15 +8,6 @@ let newPlatform;
 let goodThings = [];
 let badThings = [];
 
-let finalInfo = [
-  "Grau superior DAW",
-  "Aprèn a dissenyar i programar eines web que permetin oferir una òptima presència d’empreses i altres organitzacions a internet. La utilitat, l’accessibilitat i la usabilitat d’aquestes aplicacions han de proporcionar la millor experiència als usuaris.",
-  "Sortides professionals:",
-  "Front-end developer : Dissenyar interfícies d’usuari, Generar contingut multimèdia, Programar la interacció amb l’usuari",
-  "Back-end developer : Crear base de dades, Programar les funcionalitats de la capa de negoci, Programar APIs / web services",
-  "Analista : Investigar i detectar necessitats, Dissenyar bases de dades, Dissenyar interfícies de les aplicacions, Crear diagrames UML",
-];
-
 let scoreFinal = 0;
 
 let minute = 2;
@@ -137,45 +128,53 @@ function countScore(score) {
 
 //final score
 function displayFinalScreen() {
-  let contText = document.createElement("div");
-  let i = 0;
- /*  let rankingPos = playerInfo.length + 1; */
-  let valuePoints;
-  contText.style.margin = "0 1rem 0 1rem";
-  contText.style.borderStyle = "dashed solid";
   if (score === 0) {
     minute = 0;
     seconds = 0;
     result = 0;
-  } else {
+  } else if (score != 0 && (minute != 0 || seconds != 0)) {
     result = score + (120 - (minute * 60 + seconds));
+  } else {
+    result = score + (120 - (minute * 60 + seconds)) + 120;
   }
   scoreFinal = result;
-
-/*   do {
-    valuePoints = playerInfo[i].points;
-    if (score > parseInt(valuePoints)) {
-      rankingPos = i;
-    } else {
-      i++;
-    }
-  } while (i <= playerInfo.length - 1); */
 
   GRID.innerHTML = "game over <br>" + scoreFinal;
   GRID.style.color = "white";
   GRID.style.fontSize = "50px";
 
-  for (let i = 0; i < finalInfo.length; i++) {
-    let text = document.createElement("p");
-    let element = finalInfo[i];
-    text.style.color = "white";
-    text.style.fontSize = "20px";
-    text.innerHTML = element;
-    text.style.fontFamily = "fantasy";
-    text.style.textAlign = "start";
-    text.style.margin = "10px";
-    contText.appendChild(text);
+  let contText = document.createElement("div");
+  let cycle_title = document.createElement("h1");
+  let cycle_descripion = document.createElement("p");
+
+  contText.style.margin = "0 1rem 0 1rem";
+  contText.style.borderStyle = "dashed solid";
+
+  cycle_title.className = "cycle";
+  cycle_title.innerHTML = cycles[0].cicle + ":";
+  cycle_title.style.fontWeight = "bold";
+  contText.appendChild(cycle_title);
+
+  cycle_descripion.className = "cycle";
+  cycle_descripion.innerHTML = cycles[0].description;
+  cycle_descripion.style.fontWeight = "100";
+  contText.appendChild(cycle_descripion);
+
+  for (let index = 0; index < job_oportunities.length; index++) {
+    let job_title = document.createElement("h1");
+    let job_descripion = document.createElement("p");
+
+    job_title.className = "cycle";
+    job_title.innerHTML = job_oportunities[index].job + ":";
+    job_title.style.fontWeight = "bold";
+    contText.appendChild(job_title);
+
+    job_descripion.className = "cycle";
+    job_descripion.innerHTML = job_oportunities[index].description;
+    job_descripion.style.fontWeight = "100";
+    contText.appendChild(job_descripion);
   }
+
   GRID.appendChild(contText);
 }
 
@@ -263,7 +262,8 @@ function displayInstruccions() {
       "<div class= 'left'> <img src='images/left.png' alt='left arrow' height='42' width='42'> <span style='padding-top: 10px'> per moure a l'esquerra </span> </div> " +
       "<div class= 'left'> <img src='images/right.png' alt='left arrow' height='42' width='42'> <span style='padding-top: 10px'> per moure a la dreta </span> </div> " +
       "<div class= 'left'> <span style='padding-top: 10px'> * text: +2pts </span> </div> " +
-      "<div class= 'left'> <span style='padding-top: 10px'> * -2: -2pts </span> </div> ",
+      "<div class= 'left'> <span style='padding-top: 10px'> * -2: -2pts </span> </div> " +
+      "<div class= 'left'> <span style='padding-top: 10px'> * Puntuació Total: el temps + els punts </span> </div> ",
     icon: "question",
     showCancelButton: true,
 

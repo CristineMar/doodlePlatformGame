@@ -9,19 +9,26 @@ body {
   margin: 10px 50px;
   letter-spacing: 6px;
   font-weight: bold;
+  /* overflow: hidden; */
+  transform: scale(0.7);
+  position: relative;
 }
 
-.box {
+.swal2-container {
+  overflow-y: hidden !important;
+}
+
+/* .box {
   position: absolute;
   top: 50%;
   left: 50%;
   margin-top: -500px;
   margin-left: -350px;
-}
+} */
 
 .container {
   position: relative;
-  height: 50px;
+  height: 950px;
   width: 700px;
   margin: 0 auto;
   padding: 1rem 0 1rem 0;
@@ -32,7 +39,6 @@ body {
 td {
   padding-left: 1rem;
   padding-right: 1rem;
-  
 }
 
 table {
@@ -42,17 +48,20 @@ table {
 
 .time {
   color: white;
+  height: 50px;
 }
 .score {
   color: white;
+  height: 50px;
 }
 
 .grid {
+  margin-top: 50px;
   background-color: #444b57;
   background-image: url("images/background.png");
   position: absolute;
-  top: 100%;
-  left: 0%;
+  /* top: 100%;
+  left: 0%; */
   width: 700px;
   height: 900px;
   font-size: 100px;
@@ -186,8 +195,8 @@ button:nth-child(3) {
 
 .home {
   position: inherit;
-    left: 10px;
-    top: 10px;
+  left: 10px;
+  top: 10px;
   height: 50px;
   line-height: 50px;
   background-color: #f6e7d1;
@@ -201,6 +210,14 @@ button:nth-child(3) {
   text-align: center;
   -webkit-box-shadow: 9px 6px 20px -4px rgba(0, 0, 0, 0.68);
   box-shadow: 9px 6px 20px -4px rgba(0, 0, 0, 0.68);
+}
+
+.cycle {
+  color: white;
+  font-size: 20px;
+  font-family: auto;
+  text-align: start;
+  margin: 10px;
 }
 
 @-webkit-keyframes appear {

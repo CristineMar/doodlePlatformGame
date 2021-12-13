@@ -3,6 +3,7 @@
 ////////////////////////////
 document.addEventListener("DOMContentLoaded", () => {
   get_jobs();
+  get_cycles();
   Swal.fire({
     title: "En que consisteix:",
     icon: "info",
@@ -40,6 +41,8 @@ let isJumping = true;
 let platformTimerId;
 
 let score;
+let job_oportunities;
+let cycles;
 
 /////////////////////////////
 //        GAME OVER        //
@@ -92,11 +95,10 @@ function gameOver() {
       seconds = 0;
       score = 0;
       doodlerBottomSpace = 400;
-      console.log(doodlerBottomSpace)
       createPlatfoms();
       createDoodler();
 
-      platformTimerId = setInterval(movePlatforms, velocityPlatform); //every 1 sec
+      platformTimerId = setInterval(movePlatforms, velocityPlatform); //every 25/1000
       jump();
       countScore(score);
       startCount();
@@ -104,4 +106,3 @@ function gameOver() {
       document.addEventListener("keyup", stopControl);
     }
   }
-
